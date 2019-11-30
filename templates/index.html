@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Food review estimator</title>
+</head>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+    integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<body>
+
+    <div class="card">
+
+        <div class="card-header">
+            <h2>Food Review Estimator</h2>
+        </div>
+
+        <div class="card-body">
+            <form action="/predict" method='POST'>
+                <label for="name">Please enter review text:</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Please enter review text">
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+
+            {% for message in messages %}
+
+            {% if "Error" in message[1]: %}
+            <div class="alert alert-danger">{{ message[1] }}</div>
+            {% else %}
+
+            {% if "Text" in message[1]: %}
+            <div class="alert alert-primary">{{ message[1] }}</div>
+            {% elif "Predicted" in message[1]: %}
+            <div class="alert alert-secondary">{{ message[1] }}</div>
+            {% endif %}
+            {% endif %}
+
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </div>
+    </div>
+
+</body>
+
+</html>
