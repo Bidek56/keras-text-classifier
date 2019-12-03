@@ -1,6 +1,10 @@
 .vscode
+*.pyc
 __pychache__
+__pychache__/*
+node_modules
 venv_keras
+venv_tf1
 amazon-fine-food-reviews.zip
 Food_Reviews.h5
 hashes.txt
@@ -9,6 +13,10 @@ Reviews.csv.gz
 serverlog.log
 tokenizer.pickle
 yelp.txt.gz
-__pycache__/keras-fine-food-server.cpython-37.pyc
 database.sqlite
 kaggle.json
+*.bin
+yarn.lock
+js/src/read_model.js
+js/model/1/word_dict.json
+js/model/1/model.json

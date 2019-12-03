@@ -1,0 +1,10 @@
+{
+    "license": "MIT",
+    "dependencies": {
+        "@tensorflow/tfjs-node": "^1.3.2"
+    },
+    "scripts": {
+        "compile": "tsc",
+        "dev": "rm src/read_model.js && tsc && node src/read_model.js"
+    }
+}

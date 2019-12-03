@@ -2,7 +2,7 @@ import flask
 import tensorflow as tf
 from keras.models import load_model
 from keras.preprocessing.sequence import pad_sequences
-import pickle
+import pickle, os
 
 # App config.
 DEBUG = True
@@ -19,10 +19,13 @@ def hello():
 # request is made
 @app.before_first_request
 def load_model_to_app():
-    # Load the model
-    app.loaded_model = load_model('Food_Reviews.h5')
 
-    with open('tokenizer.pickle', 'rb') as handle:
+    source_path = '../model/1/'
+
+    # Load the model
+    app.loaded_model = load_model(os.path.join(source_path, 'Food_Reviews.h5'))
+
+    with open(os.path.join(source_path, 'tokenizer.pickle'), 'rb') as handle:
         app.loaded_tokenizer = pickle.load(handle)
     
 #     # Save the graph to the app framework.
