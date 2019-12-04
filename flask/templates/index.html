@@ -18,8 +18,8 @@
         </div>
 
         <div class="card-body">
-            <form action="/predict" method='POST'>
-                <input type="text" class="form-control" id="name" name="name"
+            <form action="{{ url_for('flask_predict') }}" method='POST'>
+                <input type="text" class="form-control" id="name" name="text"
                     placeholder="Please enter food review text">
                 <button type="submit" class="btn btn-success">Submit</button>
             </form>
