@@ -1,41 +1,43 @@
 import React, { useState, useRef } from 'react';
 import './App.css';
-import { Button, TextField, Grid, Paper, InputLabel, Theme } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Button, TextField, Grid, Paper, InputLabel, Theme } from '@mui/material';
+import { makeStyles } from 'tss-react/mui';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 
 interface StyleProps {
     rgbaColor: string;
 }
 
-const useStyles = makeStyles<Theme, StyleProps>((theme: Theme) => ({
-    root: {
-        flexGrow: 1,
-        '& > *': {
-            margin: theme.spacing(1),
+const useStyles = makeStyles<StyleProps>()((theme: Theme, { rgbaColor }) => {
+    return {
+        root: {
+            flexGrow: 1,
+            '& > *': {
+                margin: theme.spacing(1),
+            },
         },
-    },
-    paperHeader: {
-        padding: theme.spacing(2),
-        textAlign: 'center',
-        color: theme.palette.text.primary,
-        fontSize: 18,
-        backgroundColor: '#42a1f5'
-    },
-    paperOut: props => ({
-        padding: theme.spacing(2),
-        textAlign: 'center',
-        color: theme.palette.text.primary,
-        fontSize: 14,
-        fontWeight: "bold",
-        backgroundColor: props.rgbaColor
-    }),
-    textField: {
-        marginLeft: theme.spacing(1),
-        marginRight: theme.spacing(1),
-        width: 600,
+        paperHeader: {
+            padding: theme.spacing(2),
+            textAlign: 'center',
+            color: theme.palette.text.primary,
+            fontSize: 18,
+            backgroundColor: '#42a1f5'
+        },
+        paperOut: {
+            padding: theme.spacing(2),
+            textAlign: 'center',
+            color: theme.palette.text.primary,
+            fontSize: 14,
+            fontWeight: "bold",
+            backgroundColor: rgbaColor
+        },
+        textField: {
+            marginLeft: theme.spacing(1),
+            marginRight: theme.spacing(1),
+            width: 600,
+        }
     }
-}));
+});
 
 const estimateReview = async (text: string) => {
 
@@ -86,8 +88,7 @@ const App: React.FC = () => {
             break
     }
 
-    const colorProps: StyleProps = { rgbaColor }
-    const classes = useStyles(colorProps);
+    const { classes } = useStyles( { rgbaColor });
 
     const sumitEvaluation = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         event.preventDefault();
